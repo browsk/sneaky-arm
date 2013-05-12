@@ -1,0 +1,8 @@
+#object files
+*.o
+
+# libraries/archives
+*.a
+
+# dependencies
+*.d 
