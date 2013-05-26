@@ -15,13 +15,15 @@ SRC_DIR=./src
 # targets with no dependencies
 NODEPS := clean
 
-CFLAGS := $(CFLAGS) -Wall -Werror -Isrc
+CFLAGS := $(CFLAGS) -Wall -Werror -Isrc -g
 
 # http://stackoverflow.com/a/313787
 # add .d to Make's recognised suffixes
 SUFFIXES += .d
 
 all: sneaky.a check_sneaky
+
+debug: CFLAGS := $(CFLAGS) -g
 
 SOURCES := $(shell find src -name "*.c")
 DEPFILES := $(patsubst %.c,%.d,$(SOURCES))
