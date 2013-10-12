@@ -62,3 +62,20 @@ void sn_destroy_list(sn_list * list) {
 
   free(list);
 }
+
+void * sn_list_find_item(sn_list * list, sn_list_compare_t comparer, void * key) {
+  sn_acquire_lock(list);
+
+  void * item = 0;
+  sn_list_node * node = list->head;
+
+  while (node) {
+    if (0 == comparer(node->data, key)) {
+      item = node->data;
+      break;
+    }
+    node = node->next;
+  }
+
+  sn_release_lock();
+}

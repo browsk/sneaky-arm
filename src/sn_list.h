@@ -17,8 +17,13 @@ typedef struct
   sn_lock_t lock;
 } sn_list;
 
+typedef int (*sn_list_compare_t)(void *, void *);
+
 sn_list * sn_create_list();
+
 void sn_list_add_tail(sn_list * head, void * data);
+
+void * sn_list_find_item(sn_list * head, sn_list_compare_t comparer, void * key);
 
 void sn_destroy_list();
 
